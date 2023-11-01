@@ -11,18 +11,21 @@ export class EventHandler extends Handler {
 
     async Load() {
 
+        // Loading all the events
         const files = await super.Load();
 
-        // Checking if the event is once
-        if(files.once) {
+        // Loop to store all the events
+        files.forEach((file: any) => {
+            if(file.once) {
 
-            // If the event is once, then it will be executed only once
-            this._client.once(files.name, (...args: ClientEvents[keyof ClientEvents]) => files.execute(...args));
-        }
-        else {
-            
-            // If the event is not once, then it will be executed every time
-            this._client.on(files.name, (...args: ClientEvents[keyof ClientEvents]) => files.execute(...args));
-        }
+                // if the event is once, then we will use the once method
+                this._client.once(file.name, (...args: ClientEvents[keyof ClientEvents]) => file.execute(...args));
+            }
+            else {
+
+                // if the event is not once, then we will use the on method
+                this._client.on(file.name, (...args: ClientEvents[keyof ClientEvents]) => file.execute(...args));
+            }
+        });
     }
 }

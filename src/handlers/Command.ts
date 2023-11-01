@@ -9,7 +9,13 @@ export class CommandHandler extends Handler {
     }
 
     async Load() {
+
+        // Loading all the commands
         const files = await super.Load();
-        this._store.push(files);
+
+        // Loop to store all the commands
+        files.forEach((file: any) => {
+            this._store.push(file);
+        });
     }
 }
