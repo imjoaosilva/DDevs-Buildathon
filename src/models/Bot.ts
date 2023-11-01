@@ -1,5 +1,6 @@
 import { Client } from "discord.js";
 import { intents } from "../settings/intents";
+import { CommandHandler } from "../handlers/Command";
 
 /*
     Creating a new class that extends the Client class from discord.js
@@ -23,6 +24,13 @@ export class Bot extends Client {
     async start() {
         if (!this._token) throw new Error("Please provide a token to login to the bot.");
 
+        // Creating a new instance of the CommandHandler
+        const handler = new CommandHandler(this, {
+            folder: "./src/commands",
+            filestype: ["js", "ts"],
+        })
+        handler.Load();
+        
         await this.login(this._token);
     }
 }
