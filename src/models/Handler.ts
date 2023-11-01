@@ -1,6 +1,7 @@
 import { HandlerOptions } from "../@types/types";
 import { Bot } from "./Bot";
 import fs from 'fs';
+import { CommandOptions, EventOptions } from "../@types/types";
 
 /*
     Creating a new class that will load all the commands and events
@@ -12,7 +13,7 @@ export class Handler {
     public _client: Bot;
 
     // Storing Property (optional)
-    public _store: string[] = [];
+    public _store: CommandOptions[] = [];
 
     // Options Property
     private _options: HandlerOptions;

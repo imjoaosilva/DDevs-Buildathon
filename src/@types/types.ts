@@ -1,4 +1,4 @@
-import { PermissionFlagsBits } from "discord.js";
+import { PermissionFlagsBits, SlashCommandBuilder } from "discord.js";
 import { Bot } from "../models/Bot";
 
 // Handler options interface
@@ -16,7 +16,9 @@ export interface CommandOptions {
     permissions: {
         admin?: boolean;
         permission?: bigint;
-    }
+    },
+    slash?: SlashCommandBuilder;
+    execute?: (...args: any[]) => void;
 }
 
 // Event interface

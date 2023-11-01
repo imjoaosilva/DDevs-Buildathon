@@ -2,6 +2,7 @@ import { PermissionFlagsBits } from "discord.js";
 import { Command } from "../models/Command";
 import { Bot } from "../models/Bot";
 
+
 export default class testCommand extends Command {
 
     // Client Property
