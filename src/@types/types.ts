@@ -51,7 +51,7 @@ export interface CommandOptionSlashBuilderOption extends Omit<ApplicationCommand
 }
 
 export interface Roles {
-    id: string;
+    id: number;
     name: string;
     icon: string;
 }

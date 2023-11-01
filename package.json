@@ -8,6 +8,7 @@
     "start": "ts-node src/index.ts"
   },
   "devDependencies": {
+    "@types/jsdom": "^21.1.4",
     "nodemon": "^3.0.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6"
@@ -17,6 +18,7 @@
     "@types/node": "*",
     "discord.js": "^14.11.0",
     "dotenv": "^16.3.1",
+    "jsdom": "^22.1.0",
     "node-html-to-image": "^4.0.0",
     "puppeteer": "^21.4.1"
   }

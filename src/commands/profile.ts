@@ -37,9 +37,8 @@ export default class profileCommand extends Command {
         const user = interaction.options.getUser("user") as User;
 
         const userdata = await user_controller.get(user.id);
-        console.log(userdata)
 
-        const profile = new ProfileTemplate(user.username, user.displayAvatarURL(), userdata.banner);
+        const profile = new ProfileTemplate(user.username, user.displayAvatarURL(), userdata.banner, userdata.roles);
 
         const image = await profile.create();
         const attachment = new AttachmentBuilder(image, { name: "profile.png" });
