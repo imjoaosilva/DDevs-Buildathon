@@ -1,8 +1,7 @@
 import { Command } from "../models/Command";
 import { Bot } from "../models/Bot";
-import { ProfileTemplate } from "../templates/profile";
 import { setUserBanner } from "../useCases/User/Controller/user.controller";
-import { AttachmentPayload, CommandInteraction, CommandInteractionOption, EmbedBuilder } from "discord.js";
+import { EmbedBuilder } from "discord.js";
 
 export default class setbannerCommand extends Command {
 
