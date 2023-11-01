@@ -49,3 +49,9 @@ export interface CommandOptionSlashBuilderOption extends Omit<ApplicationCommand
     setDescription: (description: string) => this;
     setRequired: (required: boolean) => this;
 }
+
+export interface Roles {
+    id: string;
+    name: string;
+    icon: string;
+}
