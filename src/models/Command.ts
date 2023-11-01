@@ -1,5 +1,5 @@
-import { PermissionFlagsBits, SlashCommandBuilder, SlashCommandChannelOption, SlashCommandIntegerOption, SlashCommandStringOption, SlashCommandUserOption } from "discord.js";
-import { CommandOption, CommandOptions } from "../@types/types";
+import { ApplicationCommandOptionBase, PermissionFlagsBits, SlashCommandBuilder} from "discord.js";
+import { CommandOptionSlash, CommandOptions, CommandOptionType, CommandOptionSlashBuilderOption  } from "../@types/types";
 
 
 export class Command {
@@ -19,10 +19,10 @@ export class Command {
     // Slash Property
     public slash: SlashCommandBuilder;
 
-    constructor(options: CommandOptions) {
-        this.name = options.name;
-        this.description = options.description;
-        this.permissions = options.permissions;
+    constructor(command: CommandOptions) {
+        this.name = command.name;
+        this.description = command.description;
+        this.permissions = command.permissions;
 
         this.slash = new SlashCommandBuilder()
             .setName(this.name)
@@ -32,9 +32,32 @@ export class Command {
         if(this.permissions.admin) this.slash.setDefaultMemberPermissions(this.permissions.permission)
 
         // Setting the options
-        if(options.options) {
+        if (command.options) {
 
-            // TODO
+            const optionTypeMap: Record<CommandOptionType, string> = {
+                STRING: "addStringOption",
+                INTEGER: "addIntegerOption",
+                CHANNEL: "addChannelOption",
+                USER: "addUserOption"
+            };
+
+            for (const option of command.options) {
+                const optiontype = option.type as CommandOptionType;
+                const optionName = optionTypeMap[optiontype];
+                const slashcommand = this.slash as CommandOptionSlash;
+
+                if (optionName) {
+                    slashcommand[optionName]((opt: CommandOptionSlashBuilderOption) => 
+                        opt.setName(option.name)
+                        .setDescription(option.description)
+                        .setRequired(option.required!)
+                    )
+                } 
+                else {
+                    throw new TypeError(`Unknown option type "${optiontype}"`);
+                }
+            }
+            
         }
     }
 }

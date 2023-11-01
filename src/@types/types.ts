@@ -1,5 +1,4 @@
-import { PermissionFlagsBits, SlashCommandBuilder } from "discord.js";
-import { Bot } from "../models/Bot";
+import { ApplicationCommandOptionBase, PermissionFlagsBits, SlashCommandBuilder } from "discord.js";
 
 // Handler options interface
 export interface HandlerOptions {
@@ -22,6 +21,7 @@ export interface CommandOptions {
     execute?: (...args: any[]) => void;
 }
 
+// Command Option interface
 export interface CommandOption {
     type: string,
     name: string,
@@ -33,4 +33,19 @@ export interface CommandOption {
 export interface EventOptions {
     name: string;
     once?: boolean;
+}
+
+// Command Options Type
+export type CommandOptionType = "STRING" | "INTEGER" | "CHANNEL" | "USER";
+
+// Command Option Slash
+export interface CommandOptionSlash {
+    [key: string]: any;
+}
+
+// Command Option Slash Builder Option
+export interface CommandOptionSlashBuilderOption extends Omit<ApplicationCommandOptionBase, "setName" | "setDescription" | "setRequired"> {
+    setName: (name: string) => this;
+    setDescription: (description: string) => this;
+    setRequired: (required: boolean) => this;
 }
