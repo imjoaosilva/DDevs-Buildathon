@@ -2,7 +2,7 @@ import { AttachmentBuilder, CommandInteraction, Interaction, PermissionFlagsBits
 import { Command } from "../models/Command";
 import { Bot } from "../models/Bot";
 import { ProfileTemplate } from "../templates/profile";
-import { getUserData } from "../useCases/User/Controller/user.controller";
+import { get } from "../useCases/User/Controller/user.controller";
 
 export default class profileCommand extends Command {
 
@@ -36,7 +36,7 @@ export default class profileCommand extends Command {
 
         const user = interaction.options.getUser("user") as User;
 
-        const userdata = await getUserData(user.id);
+        const userdata = await get(user.id);
 
         const profile = new ProfileTemplate(user.username, user.displayAvatarURL(), userdata.banner);
 

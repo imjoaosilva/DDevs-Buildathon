@@ -1,6 +1,6 @@
 import { Command } from "../models/Command";
 import { Bot } from "../models/Bot";
-import { setUserBanner } from "../useCases/User/Controller/user.controller";
+import { setbanner } from "../useCases/User/Controller/user.controller";
 import { EmbedBuilder } from "discord.js";
 
 export default class setbannerCommand extends Command {
@@ -41,7 +41,7 @@ export default class setbannerCommand extends Command {
         if(!image.contentType.includes("jpeg") && !image.contentType.includes("png")) return interaction.reply({ content: "The image must be jpeg or png.", ephemeral: true });
         
         // Checking if the image is a banner
-        await setUserBanner(interaction.user.id, image.url);
+        await setbanner(interaction.user.id, image.url);
 
         // Creating the embed
         const embed = new EmbedBuilder()

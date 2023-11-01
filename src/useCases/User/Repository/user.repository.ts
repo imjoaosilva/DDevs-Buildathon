@@ -6,7 +6,7 @@ export const createUser = async (userid: string) => {
     // Creating a new user
     const user = await prisma.user.create({
         data: {
-            userid
+            userid,
         }
     });
 
