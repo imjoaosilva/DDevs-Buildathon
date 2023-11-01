@@ -1,4 +1,3 @@
-import nodeHtmlToImage from 'node-html-to-image'
 import puppeteer, { Page, Browser } from 'puppeteer';
 import { Roles } from '../@types/types';
 import jsdom from 'jsdom';
