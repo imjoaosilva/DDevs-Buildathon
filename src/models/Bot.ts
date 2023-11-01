@@ -1,6 +1,7 @@
 import { Client } from "discord.js";
 import { intents } from "../settings/intents";
 import { CommandHandler } from "../handlers/Command";
+import { EventHandler } from "../handlers/Event";
 
 /*
     Creating a new class that extends the Client class from discord.js
@@ -25,12 +26,24 @@ export class Bot extends Client {
         if (!this._token) throw new Error("Please provide a token to login to the bot.");
 
         // Creating a new instance of the CommandHandler
-        const handler = new CommandHandler(this, {
-            folder: "./src/commands",
+        const commandHandler = new CommandHandler(this, {
+            absolute_path: "./src/commands",
+            path: "../commands",
             filestype: ["js", "ts"],
-        })
-        handler.Load();
-        
+        });
+
+        // Creating a new instance of the EventHandler
+        const eventHandler = new EventHandler(this, {
+            absolute_path: "./src/events",
+            path: "../events",
+            filestype: ["js", "ts"],
+        });
+
+        // Loading all the commands and events
+
+        commandHandler.Load();
+        eventHandler.Load();
+
         await this.login(this._token);
     }
 }

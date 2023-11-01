@@ -12,7 +12,7 @@ export class Handler {
     public _client: Bot;
 
     // Storing Property (optional)
-    private _store: any;
+    public _store: string[] = [];
 
     // Options Property
     private _options: HandlerOptions;
@@ -23,14 +23,18 @@ export class Handler {
     }
 
     // This method will load the files from options.folder
-    Load() {
+    async Load() {
         
         // Picking up all the files from the folder
-        const files = fs.readdirSync(this._options.folder).filter(file => this._options.filestype.includes(file.split(".").pop()!))
+        const files = fs.readdirSync(this._options.absolute_path).filter(file => this._options.filestype.includes(file.split(".").pop()!))
         
         // Looping through all the files
         for(const file of files) {
-            console.log(file)
+
+            // Getting the class from the file
+            const data = (await import(`${this._options.path}/${file}`)).default;
+
+            return new data(this._client);
         }
     }
 
