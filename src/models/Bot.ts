@@ -18,8 +18,9 @@ export class Bot extends Client {
     // This is the EventHandler instance
     public EventHandler: EventHandler;
 
-    // Passing the intents to the super class
     constructor(token?: string) {
+        
+        // Passing the intents to the super class
         super({
             intents
         })

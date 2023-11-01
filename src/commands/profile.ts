@@ -31,6 +31,7 @@ export default class testCommand extends Command {
 
     // This method will be executed when the command is used
     async execute(interaction: CommandInteraction) {
-        interaction.reply({content: 'This is a test command!'})
+        const user = interaction.options.getUser("user");
+        interaction.reply({content: 'This is a test command! ' + user?.username, ephemeral: true});
     }
 }
