@@ -4,7 +4,7 @@ import { Bot } from "../models/Bot";
 import { ProfileTemplate } from "../templates/profile";
 import { getUserData } from "../useCases/User/Controller/user.controller";
 
-export default class testCommand extends Command {
+export default class profileCommand extends Command {
 
     // Client Property
     public _client: Bot;
@@ -14,7 +14,7 @@ export default class testCommand extends Command {
             name: "profile",
             description: "Shows the profile of a user",
             permissions: {
-                admin: true,
+                admin: false,
                 permission: PermissionFlagsBits.Administrator
             },
             options: [

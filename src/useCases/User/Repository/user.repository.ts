@@ -24,3 +24,14 @@ export const getUser = async (userid: string) => {
 
     return user;
 }
+
+export const setBanner = async (userid: string, banner: string) => {
+    await prisma.user.update({
+        where: {
+            userid
+        },
+        data: {
+            banner
+        }
+    });
+}   

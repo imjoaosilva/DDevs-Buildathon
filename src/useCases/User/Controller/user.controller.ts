@@ -1,4 +1,4 @@
-import { createUser, getUser } from "../Repository/user.repository";
+import { createUser, getUser, setBanner } from "../Repository/user.repository";
 
 // This method will get the user data
 export const getUserData = async (userid: string) => {
@@ -13,4 +13,15 @@ export const getUserData = async (userid: string) => {
     }
 
     return user;
+}
+
+export const setUserBanner = async (userid: string, banner: string) => {
+    let user = await getUser(userid);
+    
+    if(!user) {
+        const createdUser = await createUser(userid);
+        user = createdUser;
+    }
+
+    setBanner(userid, banner)
 }
