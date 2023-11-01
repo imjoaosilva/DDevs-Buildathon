@@ -1,7 +1,8 @@
-import { CommandInteraction, Interaction, PermissionFlagsBits } from "discord.js";
+import { AttachmentBuilder, CommandInteraction, Interaction, PermissionFlagsBits, User } from "discord.js";
 import { Command } from "../models/Command";
 import { Bot } from "../models/Bot";
-
+import { ProfileTemplate } from "../templates/profile";
+import { getUserData } from "../useCases/User/Controller/user.controller";
 
 export default class testCommand extends Command {
 
@@ -31,7 +32,17 @@ export default class testCommand extends Command {
 
     // This method will be executed when the command is used
     async execute(interaction: CommandInteraction) {
-        const user = interaction.options.getUser("user");
-        interaction.reply({content: 'This is a test command! ' + user?.username, ephemeral: true});
+        interaction.deferReply();
+
+        const user = interaction.options.getUser("user") as User;
+
+        const userdata = await getUserData(user.id);
+
+        const profile = new ProfileTemplate(user.username, user.displayAvatarURL(), userdata.banner);
+
+        const image = await profile.create();
+        const attachment = new AttachmentBuilder(image, { name: "profile.png" });
+
+        interaction.followUp({ files: [attachment] });
     }
 }
