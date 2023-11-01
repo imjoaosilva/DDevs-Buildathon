@@ -13,6 +13,7 @@ export const createUser = async (userid: string) => {
     return user;
 }
 
+// This method will get the user data
 export const getUser = async (userid: string) => {
 
     // Getting the user from the database
@@ -25,7 +26,10 @@ export const getUser = async (userid: string) => {
     return user;
 }
 
+// This method will set the banner of the user
 export const setBanner = async (userid: string, banner: string) => {
+
+    // Setting the banner
     await prisma.user.update({
         where: {
             userid
