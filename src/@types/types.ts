@@ -17,8 +17,16 @@ export interface CommandOptions {
         admin?: boolean;
         permission?: bigint;
     },
+    options?: CommandOption[],
     slash?: SlashCommandBuilder;
     execute?: (...args: any[]) => void;
+}
+
+interface CommandOption {
+    type: string,
+    name: string,
+    description: string,
+    required?: boolean,
 }
 
 // Event interface
