@@ -17,12 +17,12 @@ export interface CommandOptions {
         admin?: boolean;
         permission?: bigint;
     },
-    options?: CommandOption[],
+    options?: CommandOption[];
     slash?: SlashCommandBuilder;
     execute?: (...args: any[]) => void;
 }
 
-interface CommandOption {
+export interface CommandOption {
     type: string,
     name: string,
     description: string,

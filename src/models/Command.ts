@@ -1,5 +1,5 @@
-import { PermissionFlagsBits, SlashCommandBuilder } from "discord.js";
-import { CommandOptions } from "../@types/types";
+import { PermissionFlagsBits, SlashCommandBuilder, SlashCommandChannelOption, SlashCommandIntegerOption, SlashCommandStringOption, SlashCommandUserOption } from "discord.js";
+import { CommandOption, CommandOptions } from "../@types/types";
 
 
 export class Command {
@@ -30,5 +30,11 @@ export class Command {
     
         // Setting the permissions
         if(this.permissions.admin) this.slash.setDefaultMemberPermissions(this.permissions.permission)
+
+        // Setting the options
+        if(options.options) {
+
+            // TODO
+        }
     }
 }
