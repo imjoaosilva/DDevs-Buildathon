@@ -12,3 +12,13 @@ export const create = async (name: string, icons: string) => {
     const role = await createRole(name, icons);
     return role;
 }
+
+// This method will get the role data
+export const get = async (name: string) => {
+    
+    // Getting the role from the database
+    const role = await getRole(name);
+
+    return role;
+}
+
