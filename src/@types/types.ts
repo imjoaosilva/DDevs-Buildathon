@@ -36,7 +36,7 @@ export interface EventOptions {
 }
 
 // Command Options Type
-export type CommandOptionType = "STRING" | "INTEGER" | "CHANNEL" | "USER";
+export type CommandOptionType = "STRING" | "INTEGER" | "CHANNEL" | "USER" | "ATTACHMENT";
 
 // Command Option Slash
 export interface CommandOptionSlash {

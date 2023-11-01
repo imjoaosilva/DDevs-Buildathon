@@ -30,7 +30,7 @@ export class Command {
     
         // Setting the permissions
         if(this.permissions.admin) this.slash.setDefaultMemberPermissions(this.permissions.permission)
-
+        
         // Setting the options
         if (command.options) {
 
@@ -39,7 +39,8 @@ export class Command {
                 STRING: "addStringOption",
                 INTEGER: "addIntegerOption",
                 CHANNEL: "addChannelOption",
-                USER: "addUserOption"
+                USER: "addUserOption",
+                ATTACHMENT: "addAttachmentOption"
             };
 
             // Looping through the options
