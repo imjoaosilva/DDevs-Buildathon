@@ -34,6 +34,7 @@ export class Command {
         // Setting the options
         if (command.options) {
 
+            // Option Type Map (To transform the type to the [command.option].type to slash command builder method)
             const optionTypeMap: Record<CommandOptionType, string> = {
                 STRING: "addStringOption",
                 INTEGER: "addIntegerOption",
@@ -41,12 +42,22 @@ export class Command {
                 USER: "addUserOption"
             };
 
+            // Looping through the options
             for (const option of command.options) {
+
+                // Transforming the option.type to CommandOptionType (STRING, INTEGER, CHANNEL, USER)
                 const optiontype = option.type as CommandOptionType;
+
+                // Getting the optionName from the optionTypeMap
                 const optionName = optionTypeMap[optiontype];
+
+                // Setting the this.slash to CommandOptionSlash to accept the key as the optionName
                 const slashcommand = this.slash as CommandOptionSlash;
 
+                // Checking if the optionName exists
                 if (optionName) {
+                    
+                    // Setting the option
                     slashcommand[optionName]((opt: CommandOptionSlashBuilderOption) => 
                         opt.setName(option.name)
                         .setDescription(option.description)
